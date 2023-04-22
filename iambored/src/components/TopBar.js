@@ -1,15 +1,12 @@
-import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
-import Button from 'react-bootstrap/Button'
 
 function TopBar() {
     return (
-        <Nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
-                <Button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" href="#">IAmBored</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </Button>
+                </button>
                 <div class="collapse navbar-collapse" id="navbarColor03">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
@@ -39,11 +36,11 @@ function TopBar() {
                     </ul>
                     <form class="d-flex">
                         <input class="form-control me-sm-2" type="search" placeholder="Search"/>
-                        <Button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</Button>
+                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
                     </form>
                 </div>
             </div>
-        </Nav>
+        </nav>
     )
 }
 
