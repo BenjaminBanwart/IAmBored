@@ -1,12 +1,19 @@
 import './App.css';
+import Home from './components/Home';
 import TopBar from './components/TopBar';
+import About from './components/About';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <Router>
         <TopBar/>
-      </header>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/About' element={<About />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
