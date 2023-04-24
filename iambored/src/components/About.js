@@ -7,10 +7,10 @@ export default function Home () {
             <hr className="ms-5 bg-dark border-2 border-top" style={{width: "65%"}}/>
             <h3 className="ms-5 mt-4">Are you bored?</h3>
             <p className="ms-5 mt-3">
-                Try out this app if you need a recommendation on something to do!
+                Try this app out if you need a recommendation on something to do!
             </p>
             <p className="ms-5">
-                This app could be used by individuals or by groups of friends who need some inspiration!
+                This app is for individuals or groups of friends who just need some inspiration!
             </p>
         </div>
     )
