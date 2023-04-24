@@ -2,8 +2,16 @@
 export default function Home () {
 
     return (
-        <div>
-            <p>About page</p>
+        <div className="container p-3">
+            <h1 className="ms-5 mt-3" style={{width: "680px"}}>About IAmBored</h1>
+            <hr className="ms-5 bg-dark border-2 border-top" style={{width: "65%"}}/>
+            <h3 className="ms-5 mt-4">Are you bored?</h3>
+            <p className="ms-5 mt-3">
+                Try out this app if you need a recommendation on something to do!
+            </p>
+            <p className="ms-5">
+                This app could be used by individuals or by groups of friends who need some inspiration!
+            </p>
         </div>
     )
 }
