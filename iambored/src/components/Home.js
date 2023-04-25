@@ -4,11 +4,34 @@ let thingsToDo = []
 
 export default function Home () {
 
+    const myThingsToDo = thingsToDo.map((thing) =>
+        <div class="card bg-secondary mb-3 ms-3 mt-3" style={{maxWidth:"20rem"}}>
+            <div class="card-header">{thing.activity}</div>
+                <div class="card-body">
+                    <ul>
+                        <li>
+                            <p class="card-title">Type: {thing.type}</p>
+                        </li>
+                        <li>
+                            <p class="card-text">Link: {thing.link}</p>
+                        </li>
+                        <li>
+                            <p class="card-text">Participants: {thing.participants}</p>
+                        </li>
+                        <li>
+                            <p class="card-text">Price: {thing.price}</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    );
+
+    if (thingsToDo.length === 3) {
+        document.getElementById('submit').disabled = true;
+    }
+
     //handle form submission
     function handleSubmit(e) {
-        if (thingsToDo.length === 3) {
-            return alert('You have reached the maximum number of activities. Please refresh the page to start over.')
-        }
         e.preventDefault();
         let type = document.getElementById('type').value;
         let partNum = document.getElementById('partNum').value;
@@ -32,6 +55,7 @@ export default function Home () {
                     thingsToDo.push(data)
                     updateParticipants(data.participants)
                     updateActivityType(data.type)
+                    console.log(thingsToDo)
             })
             .catch(error => {
                 console.error('There was a problem with the fetch request:', error);
@@ -46,8 +70,8 @@ export default function Home () {
     // let priceString = priceForActivity.toString();
 
     return (
-        <div className='container'>
-            <div className='container flex-wrap mt-5' style={{display:"flex"}} >
+        <div className='container' style={{display: "grid", gridTemplateColumns: "1fr 1fr", gridGap: "20px"}}>
+            <div className='flex-wrap mt-5' style={{display:"flex", background:"white", maxWidth:"25rem", borderRadius:"1em", maxHeight:"26rem"}} >
                 <form onSubmit={(e) => handleSubmit(e)} name='form'>
                     <fieldset>
                         <legend className='ms-3'>What do you want to do?</legend>
@@ -79,13 +103,13 @@ export default function Home () {
                             <label class="btn btn-outline-info" for="paid">Paid</label>
                         </div>
                         <div>
-                            <button type="submit" class="btn btn-primary ms-5 mt-5">Submit</button>
+                            <button type="submit" id='submit' class="btn btn-primary ms-5 mt-5">Submit</button>
                         </div>
                     </fieldset>
                 </form>
             </div>
-            <div className='container'>
-
+            <div className='flex-wrap mt-5' style={{background:"white", maxWidth:"25rem", borderRadius:"1em"}}>
+                {myThingsToDo}
             </div>
         </div>
     )
