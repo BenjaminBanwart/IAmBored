@@ -12,7 +12,14 @@ export default function Home () {
         e.preventDefault();
         let type = document.getElementById('type').value;
         let partNum = document.getElementById('partNum').value;
-        let url = `http://www.boredapi.com/api/activity?type=${type}&participants=${partNum}`
+        let price = '';
+        if (document.getElementById('free').checked) {
+            price = document.getElementById('free').value;
+        } else if (document.getElementById('paid').checked) {
+            price = document.getElementById('paid').value;
+        }
+
+        let url = `http://www.boredapi.com/api/activity?type=${type}&participants=${partNum}&price=${price}`
 
             fetch(url)
         .then(response => {
@@ -25,10 +32,6 @@ export default function Home () {
                     thingsToDo.push(data)
                     updateParticipants(data.participants)
                     updateActivityType(data.type)
-                    console.log(thingsToDo)
-                    console.log(participants)
-                    console.log(activityType)
-                    console.log(url)
             })
             .catch(error => {
                 console.error('There was a problem with the fetch request:', error);
@@ -37,7 +40,10 @@ export default function Home () {
 
     let [participants, updateParticipants] = useState(1)
     let [activityType, updateActivityType] = useState('')
-    let [activityPrice, updateActivityPrice] = useState(0)
+
+    // Not enough support on the API for this below logic to work
+    // let priceForActivity = Math.floor(Math.random() * (100 - 10) + 10) / 100;
+    // let priceString = priceForActivity.toString();
 
     return (
         <div className='container'>
@@ -68,7 +74,8 @@ export default function Home () {
                         <div class="btn-group ms-5 mt-5" role="group" aria-label="Basic radio toggle button group">
                             <input type="radio" class="btn-check" name="radio" id="free" autocomplete="off" value={"0"} />
                             <label class="btn btn-outline-info" for="free">Free</label>
-                            <input type="radio" class="btn-check" name="radio" id="paid" autocomplete="off" value={"1"} />
+                            {/* Not enough support on the API to implement randomized amounts of money for price */}
+                            <input type="radio" class="btn-check" name="radio" id="paid" autocomplete="off" value={"0.2"} />
                             <label class="btn btn-outline-info" for="paid">Paid</label>
                         </div>
                         <div>
