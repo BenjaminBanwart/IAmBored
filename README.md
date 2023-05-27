@@ -13,8 +13,9 @@ This app is for individuals or groups of friends who just need some inspiration!
 - Microsoft Azure
 
 ## Issues
-- Known issue where things to do don't populate cards
+- No known issues at the moment
 
 ## Future
 - Implement better UI design
 - Implement new features of BoredAPI if they make them
+- ThingsToDo array allows for duplicates(Not desired outcome)

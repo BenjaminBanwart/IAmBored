@@ -1,8 +1,9 @@
 import { useState } from 'react';
 
-let thingsToDo = []
 
 export default function Home () {
+
+    const [thingsToDo, setThingsToDo] = useState([]);
 
     const myThingsToDo = thingsToDo.map((thing) =>
         <div class="card bg-secondary mb-3 ms-3 mt-3" style={{maxWidth:"20rem"}}>
@@ -30,6 +31,29 @@ export default function Home () {
         document.getElementById('submit').disabled = true;
     }
 
+
+    //api call
+    function apiCall(url) {
+        fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+            .then(data => {
+                if (!thingsToDo.includes(data.activity)) {
+                    setThingsToDo(prevThingsToDo => [...prevThingsToDo, data]);
+                    updateParticipants(data.participants)
+                    updateActivityType(data.type)
+                    console.log(thingsToDo)
+                }
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch request:', error);
+            });
+    }
+
     //handle form submission
     function handleSubmit(e) {
         e.preventDefault();
@@ -44,22 +68,7 @@ export default function Home () {
 
         let url = `http://www.boredapi.com/api/activity?type=${type}&participants=${partNum}&price=${price}`
 
-            fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-            .then(data => {
-                    thingsToDo.push(data)
-                    updateParticipants(data.participants)
-                    updateActivityType(data.type)
-                    console.log(thingsToDo)
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch request:', error);
-            });
+        apiCall(url)
     }
 
     let [participants, updateParticipants] = useState(1)
